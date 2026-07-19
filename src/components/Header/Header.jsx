@@ -54,10 +54,12 @@ export default function Header() {
 
           {/* Center: Navigation Menu (Desktop) */}
           <nav className={styles.navDesktop}>
-            <a href="#home" className={styles.navLink}>HOME</a>
-            <a href="#projects" className={styles.navLink}>VIP PROJECTS</a>
-            <a href="#services" className={styles.navLink}>SERVICES</a>
-            <a href="#packages" className={styles.navLink}>PACKAGES</a>
+            <a href="/" className={styles.navLink}>Home</a>
+            <a href="#about" className={styles.navLink}>About</a>
+            <a href="#projects" className={styles.navLink}>VIP Projects</a>
+            <a href="#services" className={styles.navLink}>Services</a>
+            <a href="#packages" className={styles.navLink}>Packages</a>
+            <a href="#contact" className={styles.navLink}>Contact</a>
           </nav>
 
           {/* Right Side: Contact Us & Mobile Toggle */}
