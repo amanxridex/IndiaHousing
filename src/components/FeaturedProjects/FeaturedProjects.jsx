@@ -83,6 +83,10 @@ export default function FeaturedProjects() {
                   <h3 className={styles.projectName}>
                     <strong>{project.name}</strong>, {project.subtitle}
                   </h3>
+                  <div className={styles.cardActions}>
+                    <button className={styles.actionBtn}>Enquire Now</button>
+                    <button className={styles.actionBtn}>View Details</button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -96,6 +100,10 @@ export default function FeaturedProjects() {
                   <h3 className={styles.projectName}>
                     <strong>{project.name}</strong>, {project.subtitle}
                   </h3>
+                  <div className={styles.cardActions}>
+                    <button className={styles.actionBtn}>Enquire Now</button>
+                    <button className={styles.actionBtn}>View Details</button>
+                  </div>
                 </div>
               </div>
             ))}

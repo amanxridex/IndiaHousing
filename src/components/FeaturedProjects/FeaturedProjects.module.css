@@ -75,6 +75,34 @@
   font-weight: 700;
 }
 
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.actionBtn {
+  flex: 1;
+  padding: 0.5rem 0;
+  background: linear-gradient(135deg, rgba(41, 15, 76, 0.95) 0%, rgba(18, 5, 36, 0.98) 100%);
+  color: #C59D5F;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.actionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1);
+}
+
 @media (max-width: 768px) {
   .sectionHeader {
     flex-direction: column;
