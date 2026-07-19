@@ -4,20 +4,20 @@ import FadeIn from '../FadeIn';
 const teamMembers = [
   {
     id: 1,
-    name: 'Rajesh Sharma',
+    name: 'Malvindder Singh Cchauhan',
     role: 'CEO & Managing Director',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 2,
-    name: 'Priya Patel',
-    role: 'Head of Architecture',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop',
+    name: 'Veer Vikram Singh',
+    role: 'Chief Operations Officer',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 3,
-    name: 'Amit Kumar',
-    role: 'Chief Financial Officer',
+    name: 'Akshay',
+    role: 'Head of Design & Architecture',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop',
   }
 ];
