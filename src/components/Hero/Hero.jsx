@@ -7,6 +7,15 @@ import FadeIn from '../FadeIn';
 export default function Hero() {
   return (
     <section className={styles.hero}>
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className={styles.videoBg}
+      >
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
       <div className={styles.overlay}></div>
       <div className={`container ${styles.content}`}>
         <FadeIn direction="up">
