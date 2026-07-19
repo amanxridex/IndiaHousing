@@ -1,7 +1,11 @@
 .about {
   background-color: var(--background);
-  background-image: linear-gradient(to bottom, #03001C 0%, var(--background) 100px);
   padding: 6rem 0;
+  position: relative;
+  margin-top: -80px;
+  border-top-left-radius: 50% 80px;
+  border-top-right-radius: 50% 80px;
+  z-index: 2;
 }
 
 .bentoGrid {
