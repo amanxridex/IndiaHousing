@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import { Menu, X, Mail } from 'lucide-react';
 
@@ -11,13 +11,27 @@ const Linkedin = ({size}) => <svg width={size} height={size} viewBox="0 0 24 24"
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <div className={styles.headerWrapper}>
+    <div className={`${styles.headerWrapper} ${isScrolled ? styles.scrolled : ''}`}>
       {/* Top Bar */}
       <div className={styles.topBar}>
         <div className={`container ${styles.topBarContainer}`}>
