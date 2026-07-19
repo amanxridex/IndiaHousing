@@ -1,5 +1,6 @@
 import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import SplashScreen from "@/components/SplashScreen/SplashScreen";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -21,7 +22,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SplashScreen />
+        {children}
+      </body>
     </html>
   );
 }
