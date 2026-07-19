@@ -1,6 +1,12 @@
 .whyChooseUs {
-  background-color: var(--background);
+  background-color: #09203F;
+  background-image: linear-gradient(180deg, #09203F 0%, #03001C 100%);
   padding: 6rem 0;
+  color: white;
+}
+
+.whyChooseUs :global(.section-title) {
+  color: #ffffff;
 }
 
 .container {
@@ -15,7 +21,7 @@
 
 .description {
   font-size: 1rem;
-  color: var(--text-light);
+  color: #e2e8f0;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
