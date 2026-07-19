@@ -1,6 +1,6 @@
 .about {
   background-color: var(--background);
-  background-image: linear-gradient(to bottom, #03001C 0%, var(--background) 250px);
+  background-image: linear-gradient(to bottom, #03001C 0%, var(--background) 100px);
 }
 
 .grid {
