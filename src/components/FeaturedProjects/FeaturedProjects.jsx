@@ -1,5 +1,6 @@
 import styles from './FeaturedProjects.module.css';
 import { MapPin, Home, Maximize } from 'lucide-react';
+import FadeIn from '../FadeIn';
 
 const projects = [
   {
@@ -35,37 +36,41 @@ export default function FeaturedProjects() {
   return (
     <section id="projects" className={`section ${styles.projects}`}>
       <div className="container">
-        <h2 className="section-title">Our Signature Projects</h2>
-        <p className="section-subtitle">
-          Discover our portfolio of meticulously designed properties that blend aesthetics with functionality.
-        </p>
+        <FadeIn direction="up">
+          <h2 className="section-title">Our Signature Projects</h2>
+          <p className="section-subtitle">
+            Discover our portfolio of meticulously designed properties that blend aesthetics with functionality.
+          </p>
+        </FadeIn>
         
         <div className={styles.grid}>
-          {projects.map(project => (
-            <div key={project.id} className={styles.card}>
-              <div className={styles.imageWrapper}>
-                <span className={styles.statusBadge}>{project.status}</span>
-                <img src={project.image} alt={project.name} className={styles.image} />
-              </div>
-              <div className={styles.content}>
-                <h3 className={styles.projectName}>{project.name}</h3>
-                <div className={styles.location}>
-                  <MapPin size={16} />
-                  <span>{project.location}</span>
+          {projects.map((project, index) => (
+            <FadeIn key={project.id} direction="up" delay={index * 0.15}>
+              <div className={styles.card}>
+                <div className={styles.imageWrapper}>
+                  <span className={styles.statusBadge}>{project.status}</span>
+                  <img src={project.image} alt={project.name} className={styles.image} />
                 </div>
-                
-                <div className={styles.details}>
-                  <div className={styles.detailItem}>
-                    <Home size={16} />
-                    <span>{project.type}</span>
+                <div className={styles.content}>
+                  <h3 className={styles.projectName}>{project.name}</h3>
+                  <div className={styles.location}>
+                    <MapPin size={16} />
+                    <span>{project.location}</span>
                   </div>
-                  <div className={styles.detailItem}>
-                    <Maximize size={16} />
-                    <span>{project.area}</span>
+                  
+                  <div className={styles.details}>
+                    <div className={styles.detailItem}>
+                      <Home size={16} />
+                      <span>{project.type}</span>
+                    </div>
+                    <div className={styles.detailItem}>
+                      <Maximize size={16} />
+                      <span>{project.area}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>

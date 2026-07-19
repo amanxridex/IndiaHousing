@@ -1,5 +1,6 @@
 import styles from './Services.module.css';
 import { Building2, Key, TrendingUp } from 'lucide-react';
+import FadeIn from '../FadeIn';
 
 const services = [
   {
@@ -26,20 +27,24 @@ export default function Services() {
   return (
     <section id="services" className={`section ${styles.services}`}>
       <div className="container">
-        <h2 className="section-title">Our Expertise</h2>
-        <p className="section-subtitle">
-          Comprehensive real estate solutions tailored to meet your unique needs and aspirations.
-        </p>
+        <FadeIn direction="up">
+          <h2 className="section-title">Our Expertise</h2>
+          <p className="section-subtitle">
+            Comprehensive real estate solutions tailored to meet your unique needs and aspirations.
+          </p>
+        </FadeIn>
         
         <div className={styles.grid}>
-          {services.map(service => (
-            <div key={service.id} className={styles.card}>
-              <div className={styles.iconWrapper}>
-                {service.icon}
+          {services.map((service, index) => (
+            <FadeIn key={service.id} direction="up" delay={index * 0.15}>
+              <div className={styles.card}>
+                <div className={styles.iconWrapper}>
+                  {service.icon}
+                </div>
+                <h3 className={styles.title}>{service.title}</h3>
+                <p className={styles.description}>{service.description}</p>
               </div>
-              <h3 className={styles.title}>{service.title}</h3>
-              <p className={styles.description}>{service.description}</p>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>
