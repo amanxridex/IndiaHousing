@@ -58,6 +58,16 @@
   gap: 0.5rem;
 }
 
+.emailIcon {
+  animation: mailPulse 2s infinite ease-in-out;
+}
+
+@keyframes mailPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* Main Header */
 .header {
   padding: 1rem 0;

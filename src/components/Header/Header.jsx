@@ -35,7 +35,7 @@ export default function Header() {
           </div>
 
           <div className={styles.emailContact}>
-            <Mail size={14} />
+            <Mail size={14} className={styles.emailIcon} />
             <span>info@indiahousing.org</span>
           </div>
         </div>
