@@ -5,60 +5,56 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: #03001C; /* Dark navy background */
+  background-color: var(--background);
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-top: 80px; /* Offset for header */
-  gap: 4rem;
-}
-
-.content {
-  flex: 0 0 50%;
-  position: relative;
-  z-index: 2;
-  text-align: left;
-}
-
-.videoWrapper {
-  flex: 0 0 45%;
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  z-index: 2;
-}
-
-/* The Photo Frame Effect */
-.videoFrame {
-  width: 100%;
-  max-width: 800px; /* Increased size to match the image */
-  aspect-ratio: 16/9;
-  border: 2px solid #a238ff; /* Vibrant purple border */
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  background-color: #03001C;
-  display: flex;
-}
-
-.videoElement {
+.videoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(17, 17, 17, 0.8) 0%, rgba(17, 17, 17, 0.2) 100%);
+  z-index: 1;
+}
+
+.heroBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid #a238ff; /* Minimal purple border around the entire hero */
+  z-index: 5;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: 1000px;
+  width: 100%;
+  padding-top: 100px; /* Offset for header */
 }
 
 .topLabel {
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: #CCA471; /* Matched to golden frame */
-  font-size: 0.85rem;
-  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
@@ -68,14 +64,14 @@
   display: inline-block;
   width: 40px;
   height: 2px;
-  background-color: #CCA471;
+  background-color: var(--secondary);
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 400;
   color: #ffffff;
-  line-height: 1.15;
+  line-height: 1.1;
   margin-bottom: 3rem;
 }
 
@@ -170,28 +166,9 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    gap: 3rem;
-    padding-top: 120px;
-  }
-  .content, .videoWrapper {
-    flex: 1 1 auto;
-    width: 100%;
-  }
-  .videoWrapper {
-    justify-content: flex-start;
-  }
-  .videoFrame {
-    max-width: 100%;
-    aspect-ratio: 16/9; /* Switch to wide video on mobile/tablet */
-  }
-}
-
 @media (max-width: 768px) {
   .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   .ctaGroup {
     flex-direction: column;
