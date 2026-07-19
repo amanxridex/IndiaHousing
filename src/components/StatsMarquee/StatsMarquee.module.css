@@ -1,0 +1,60 @@
+.statsWrapper {
+  background-color: #2176ff; /* A bright, vibrant blue matching the reference */
+  background-image: linear-gradient(90deg, #1d6aeb 0%, #2581ff 100%);
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: statsScroll 25s linear infinite;
+  padding: 0 2rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+@keyframes statsScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-33.333%)); }
+}
+
+@media (max-width: 768px) {
+  .statValue {
+    font-size: 2rem;
+  }
+  .statLabel {
+    font-size: 0.75rem;
+  }
+  .marqueeTrack {
+    gap: 3rem;
+  }
+}

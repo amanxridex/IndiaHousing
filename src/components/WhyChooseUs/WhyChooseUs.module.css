@@ -1,0 +1,121 @@
+.whyChooseUs {
+  background-color: var(--background);
+  padding: 6rem 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.leftContent {
+  flex: 0 0 35%;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.rightContent {
+  flex: 0 0 65%;
+  display: flex;
+  gap: 1rem;
+  height: 500px;
+}
+
+.cardWrapper {
+  flex: 1;
+  height: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1rem 1.5rem;
+  background: linear-gradient(to top, rgba(3, 0, 28, 0.9) 0%, rgba(3, 0, 28, 0.4) 60%, transparent 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.cardTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.cardDesc {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  height: 0;
+  overflow: hidden;
+}
+
+.card:hover .cardDesc {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  margin-top: 0.5rem;
+}
+
+.card:hover .cardTitle {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .leftContent, .rightContent {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  
+  .rightContent {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rightContent {
+    height: auto;
+    flex-direction: column;
+  }
+  
+  .cardWrapper {
+    height: 250px;
+  }
+}
