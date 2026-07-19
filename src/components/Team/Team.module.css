@@ -39,7 +39,7 @@
 }
 
 .founderRole {
-  color: var(--accent);
+  color: var(--background);
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
