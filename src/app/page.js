@@ -4,7 +4,7 @@ import StatsMarquee from '../components/StatsMarquee/StatsMarquee';
 import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs';
 import About from '../components/About/About';
 import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
-import Services from '../components/Services/Services';
+import Team from '../components/Team/Team';
 import Testimonials from '../components/Testimonials/Testimonials';
 import ContactFooter from '../components/ContactFooter/ContactFooter';
 
@@ -17,7 +17,7 @@ export default function Home() {
       <WhyChooseUs />
       <About />
       <FeaturedProjects />
-      <Services />
+      <Team />
       <Testimonials />
       <ContactFooter />
     </main>
