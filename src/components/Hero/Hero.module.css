@@ -34,7 +34,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border: 4px solid #a238ff; /* Minimal purple border around the entire hero */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle minimal border like the footer */
   z-index: 5;
   pointer-events: none;
 }
