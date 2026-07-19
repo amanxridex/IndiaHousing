@@ -92,9 +92,18 @@ a {
 .btn-dark {
   background-color: #2D2D44;
   color: #FFFFFF;
+  text-shadow: -1.5px 0px 0 rgba(0, 255, 255, 0.8), 1.5px 0px 0 rgba(255, 140, 0, 0.8);
+  box-shadow: 0 4px 0 #1A1A2E, 0 8px 15px rgba(0,0,0,0.2);
+  transition: all 0.15s ease;
 }
 
 .btn-dark:hover {
-  background-color: #1A1A2E;
-  transform: translateY(-2px);
+  background-color: #1F1F33;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1A1A2E, 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-dark:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #1A1A2E;
 }
