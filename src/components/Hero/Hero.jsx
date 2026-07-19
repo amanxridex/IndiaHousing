@@ -23,9 +23,8 @@ export default function Hero() {
             <span className={styles.line}></span> TOP REAL ESTATE IN INDIA
           </p>
           <h1 className={`${styles.title} serif`}>
-            Unveil The Beauty<br />
-            Of Our Exclusive<br />
-            Properties
+            Unveil The Beauty Of<br />
+            Our Exclusive Properties
           </h1>
           <div className={styles.ctaGroup}>
             <a href="#projects" className="btn btn-primary">EXPLORE PROJECTS</a>
