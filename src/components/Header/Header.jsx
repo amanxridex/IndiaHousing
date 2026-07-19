@@ -48,7 +48,7 @@ export default function Header() {
           {/* Left Side: Logo */}
           <div className={styles.left}>
             <a href="/" className={styles.logo}>
-              <span className={styles.logoIcon}>&#10036;</span> IHPL
+              <img src="/ihpl.png" alt="IHPL Logo" style={{ height: '45px', objectFit: 'contain' }} />
             </a>
           </div>
 
