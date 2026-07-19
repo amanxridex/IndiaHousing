@@ -15,9 +15,11 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         
-        {/* Left Side: Contact Us (Hidden on mobile to save space, or kept) */}
+        {/* Left Side: Logo */}
         <div className={styles.left}>
-          <a href="#contact" className={styles.contactBtn}>Contact Us</a>
+          <a href="/" className={styles.logo}>
+            IH<span>PL</span>
+          </a>
         </div>
 
         {/* Center: Navigation Menu (Desktop) */}
@@ -27,11 +29,9 @@ export default function Header() {
           <a href="#services" className={styles.navLink}>Services</a>
         </nav>
 
-        {/* Right Side: Logo & Mobile Toggle */}
+        {/* Right Side: Contact Us & Mobile Toggle */}
         <div className={styles.right}>
-          <a href="/" className={styles.logo}>
-            IH<span>PL</span>
-          </a>
+          <a href="#contact" className={styles.contactBtn}>Contact Us</a>
           <button className={styles.mobileToggle} onClick={toggleMenu} aria-label="Toggle Menu">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
