@@ -76,19 +76,21 @@ export default function Testimonials() {
             {testimonials.map((t, index) => (
               <FadeIn key={t.id} direction="up" delay={index * 0.1}>
                 <div 
-                  className={styles.card} 
+                  className={styles.cardWrapper}
                   style={{ 
                     transform: `translateY(${t.translateY}) rotate(${t.rotate})` 
                   }}
                 >
-                  <div className={styles.pin}></div>
-                  <div className={styles.cardImageWrapper}>
-                    <img src={t.image} alt={t.name} className={styles.cardImage} />
-                  </div>
-                  <div className={styles.cardContent}>
-                    <h4 className={styles.cardName}>{t.name}</h4>
-                    <span className={styles.cardTitle}>{t.title}</span>
-                    <p className={styles.cardQuote}>{t.quote}</p>
+                  <div className={styles.card}>
+                    <div className={styles.pin}></div>
+                    <div className={styles.cardImageWrapper}>
+                      <img src={t.image} alt={t.name} className={styles.cardImage} />
+                    </div>
+                    <div className={styles.cardContent}>
+                      <h4 className={styles.cardName}>{t.name}</h4>
+                      <span className={styles.cardTitle}>{t.title}</span>
+                      <p className={styles.cardQuote}>{t.quote}</p>
+                    </div>
                   </div>
                 </div>
               </FadeIn>

@@ -74,6 +74,26 @@
   flex-wrap: wrap;
 }
 
+.cardWrapper {
+  position: relative;
+  transition: transform 0.3s ease;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.cardWrapper:hover {
+  z-index: 10;
+}
+
+.cardWrapper:hover .card {
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(197, 157, 95, 0.4);
+}
+
 .card {
   background: #09203F;
   border-radius: 12px;
@@ -81,13 +101,8 @@
   width: 220px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
   border: 1px solid rgba(197, 157, 95, 0.1);
-}
-
-.card:hover {
-  box-shadow: 0 15px 40px rgba(197, 157, 95, 0.2);
-  z-index: 10;
 }
 
 /* The Gold Pin */
