@@ -1,11 +1,7 @@
 .whyChooseUs {
-  background-color: #03001C;
+  background-color: #09203F;
   background-image: linear-gradient(180deg, #09203F 0%, #03001C 100%);
   padding: 6rem 0;
-  position: relative;
-  border-bottom-left-radius: 50% 80px;
-  border-bottom-right-radius: 50% 80px;
-  z-index: 2;
   color: white;
 }
 
