@@ -35,11 +35,11 @@
 /* The Photo Frame Effect */
 .videoFrame {
   width: 100%;
-  max-width: 500px;
-  aspect-ratio: 4/5;
-  border: 12px solid #CCA471; /* Golden/Tan logo color border */
+  max-width: 600px;
+  aspect-ratio: 16/9; /* Horizontal video */
+  border: 2px solid #8e44ad; /* Minimal purple border */
   border-radius: 8px; /* Slight rounding for a premium feel */
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
   background-color: #111; /* Fallback before video loads */
@@ -53,7 +53,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(142, 68, 173, 0.2); /* Subtle inner purple glow */
   pointer-events: none;
 }
 
