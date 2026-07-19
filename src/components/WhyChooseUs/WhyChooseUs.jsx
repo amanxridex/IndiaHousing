@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import styles from './WhyChooseUs.module.css';
 import FadeIn from '../FadeIn';
 
@@ -29,6 +32,16 @@ const features = [
 ];
 
 export default function WhyChooseUs() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="why-us" className={`section ${styles.whyChooseUs}`}>
       <div className={`container ${styles.container}`}>
@@ -45,20 +58,23 @@ export default function WhyChooseUs() {
           </a>
         </FadeIn>
 
-        {/* Right Side: Vertical Cards */}
-        <div className={styles.rightContent}>
-          {features.map((feature, index) => (
-            <FadeIn key={feature.id} direction="up" delay={index * 0.15} className={styles.cardWrapper}>
-              <div className={styles.card}>
+        {/* Right Side: Single Slider Card */}
+        <FadeIn direction="up" delay={0.2} className={styles.rightContent}>
+          <div className={styles.sliderCard}>
+            {features.map((feature, index) => (
+              <div 
+                key={feature.id} 
+                className={`${styles.slide} ${index === currentIndex ? styles.activeSlide : ''}`}
+              >
                 <img src={feature.image} alt={feature.title} className={styles.cardImage} />
                 <div className={styles.cardOverlay}>
                   <h3 className={styles.cardTitle}>{feature.title}</h3>
                   <p className={styles.cardDesc}>{feature.desc}</p>
                 </div>
               </div>
-            </FadeIn>
-          ))}
-        </div>
+            ))}
+          </div>
+        </FadeIn>
 
       </div>
     </section>
