@@ -10,15 +10,34 @@
   padding-top: 2rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0 3rem;
+  position: relative;
+}
+
+.marqueeTrack {
+  display: flex;
   gap: 2rem;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); } /* -50% of the entire track width minus half gap to be perfectly seamless */
 }
 
 .card {
   background: transparent;
   cursor: pointer;
+  width: 320px;
+  flex-shrink: 0;
 }
 
 .imageWrapper {

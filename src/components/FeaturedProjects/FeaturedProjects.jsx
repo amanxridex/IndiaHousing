@@ -25,6 +25,36 @@ const projects = [
     name: 'Majesty Towers',
     subtitle: 'South Mumbai (Bespoke Luxury)',
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop',
+  },
+  {
+    id: 5,
+    name: 'The Oasis',
+    subtitle: 'Gurgaon (Ultra Luxury)',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 6,
+    name: 'Azure Heights',
+    subtitle: 'Chennai (Sea View Apartments)',
+    image: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?q=80&w=2000&auto=format&fit=crop',
+  },
+  {
+    id: 7,
+    name: 'Platinum Estates',
+    subtitle: 'Delhi (Farmhouses)',
+    image: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 8,
+    name: 'The Zenith',
+    subtitle: 'Pune (IT Park Commercial)',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop',
+  },
+  {
+    id: 9,
+    name: 'Sapphire Skyline',
+    subtitle: 'Hyderabad (Sky Villas)',
+    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop',
   }
 ];
 
@@ -41,11 +71,11 @@ export default function FeaturedProjects() {
             <a href="#projects" className="btn btn-primary">VIEW ALL PROJECTS</a>
           </div>
         </FadeIn>
-        
-        <div className={styles.grid}>
-          {projects.map((project, index) => (
-            <FadeIn key={project.id} direction="up" delay={index * 0.15}>
-              <div className={styles.card}>
+        <div className={styles.marqueeContainer}>
+          <div className={styles.marqueeTrack}>
+            {/* First Set */}
+            {projects.map((project) => (
+              <div key={project.id} className={styles.card}>
                 <div className={styles.imageWrapper}>
                   <img src={project.image} alt={project.name} className={styles.image} />
                 </div>
@@ -55,8 +85,21 @@ export default function FeaturedProjects() {
                   </h3>
                 </div>
               </div>
-            </FadeIn>
-          ))}
+            ))}
+            {/* Second Set (Duplicate for seamless loop) */}
+            {projects.map((project) => (
+              <div key={`${project.id}-dup`} className={styles.card}>
+                <div className={styles.imageWrapper}>
+                  <img src={project.image} alt={project.name} className={styles.image} />
+                </div>
+                <div className={styles.content}>
+                  <h3 className={styles.projectName}>
+                    <strong>{project.name}</strong>, {project.subtitle}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
