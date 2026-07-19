@@ -2,6 +2,9 @@
   background-color: #03001C;
   color: #ffffff;
   font-family: 'Inter', sans-serif;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  overflow: hidden;
 }
 
 /* CTA Section */
