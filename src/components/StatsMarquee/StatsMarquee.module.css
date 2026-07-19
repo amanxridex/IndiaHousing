@@ -1,6 +1,6 @@
 .statsWrapper {
-  background-color: #2176ff; /* A bright, vibrant blue matching the reference */
-  background-image: linear-gradient(90deg, #1d6aeb 0%, #2581ff 100%);
+  background-color: #03001C;
+  background-image: linear-gradient(90deg, #03001C 0%, #09203F 50%, #03001C 100%);
   width: 100%;
   overflow: hidden;
   padding: 1.5rem 0;
@@ -8,8 +8,8 @@
   color: white;
   display: flex;
   align-items: center;
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(197, 157, 95, 0.3);
+  border-bottom: 1px solid rgba(197, 157, 95, 0.3);
 }
 
 .marqueeTrack {
@@ -32,6 +32,7 @@
   font-weight: 700;
   font-family: 'Playfair Display', serif;
   line-height: 1;
+  color: #C59D5F;
 }
 
 .statLabel {
