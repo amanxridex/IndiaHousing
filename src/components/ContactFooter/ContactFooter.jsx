@@ -75,7 +75,7 @@ export default function ContactFooter() {
             <ul className={styles.contactList}>
               <li>
                 <MapPin size={18} className={styles.contactIcon} />
-                <span>IHPL Tower, Nariman Point,<br />Mumbai - 400021</span>
+                <span>Vijay Colony, near Centrio Mall,<br />Dehradun</span>
               </li>
               <li>
                 <Phone size={18} className={styles.contactIcon} />
