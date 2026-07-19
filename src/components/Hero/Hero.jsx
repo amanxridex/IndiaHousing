@@ -1,21 +1,42 @@
+"use client";
+
 import styles from './Hero.module.css';
+import { Mouse } from 'lucide-react';
+import FadeIn from '../FadeIn';
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.overlay}></div>
       <div className={`container ${styles.content}`}>
-        <h1 className={styles.title}>
-          Building the <span className={styles.highlight}>Future</span><br />
-          of India
-        </h1>
-        <p className={styles.subtitle}>
-          IHPL delivers premium residential and commercial spaces that redefine luxury and set new benchmarks for quality and design.
-        </p>
-        <div className={styles.ctaGroup}>
-          <a href="#projects" className="btn btn-primary">Explore Projects</a>
-          <a href="#contact" className="btn btn-secondary">Contact Us</a>
-        </div>
+        <FadeIn direction="up">
+          <p className={styles.topLabel}>
+            <span className={styles.line}></span> TOP REAL ESTATE IN INDIA
+          </p>
+          <h1 className={`${styles.title} serif`}>
+            Unveil The Beauty<br />
+            Of Our Exclusive<br />
+            Properties
+          </h1>
+          <div className={styles.ctaGroup}>
+            <a href="#projects" className="btn btn-primary">EXPLORE PROJECTS</a>
+            <div className={styles.reviewsBadge}>
+              <div className={styles.googleIcon}>G</div>
+              <div className={styles.reviewsText}>
+                <span className={styles.reviewsLabel}>Reviews</span>
+                <div className={styles.stars}>
+                  <span className={styles.rating}>5.0</span>
+                  <span className={styles.star}>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+      
+      <div className={styles.scrollDown}>
+        <Mouse size={24} className={styles.mouseIcon} />
+        <span>Scroll Down</span>
       </div>
     </section>
   );

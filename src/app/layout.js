@@ -1,10 +1,16 @@
-import { Outfit } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -14,7 +20,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
       <body>{children}</body>
     </html>
   );
