@@ -1,64 +1,93 @@
 import styles from './ContactFooter.module.css';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Twitter, Facebook, Linkedin } from 'lucide-react';
 import FadeIn from '../FadeIn';
 
 export default function ContactFooter() {
   return (
     <footer id="contact" className={styles.footer}>
-      <div className="container">
-        <div className={styles.grid}>
-          <FadeIn direction="right">
-            <div className={styles.contactInfo}>
-              <h2>Get In Touch</h2>
-              <p>Ready to find your dream space? Contact our team of experts for personalized assistance.</p>
-              
-              <div className={styles.infoItem}>
-                <MapPin className={styles.icon} />
-                <span>IHPL Tower, Nariman Point, Mumbai - 400021</span>
-              </div>
-              <div className={styles.infoItem}>
-                <Phone className={styles.icon} />
-                <span>+91 22 1234 5678</span>
-              </div>
-              <div className={styles.infoItem}>
-                <Mail className={styles.icon} />
-                <span>contact@ihpl.in</span>
-              </div>
+      {/* CTA Section */}
+      <div className={styles.ctaSection}>
+        <FadeIn direction="up">
+          <div className={styles.ctaContent}>
+            <h2>Explore The World In Style<br />With Your Dream Property</h2>
+            <p>Embark On An Unforgettable Journey With IHPL. Select Your<br />Dream Property, Choose Your Location, And Explore The World In Style Today!</p>
+            <div className={styles.ctaButtons}>
+              <a href="#book" className={styles.bookBtn}>BOOK NOW</a>
+              <a href="#contact" className={styles.contactBtn}>CONTACT US</a>
             </div>
-          </FadeIn>
-          
-          <FadeIn direction="left" delay={0.2}>
-            <div className={styles.formWrapper}>
-              <form className={styles.form}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Full Name</label>
-                  <input type="text" className={styles.input} placeholder="John Doe" />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Email Address</label>
-                  <input type="email" className={styles.input} placeholder="john@example.com" />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Message</label>
-                  <textarea className={styles.textarea} placeholder="How can we help you?"></textarea>
-                </div>
-                <button type="button" className="btn btn-secondary" style={{ width: '100%' }}>
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </FadeIn>
-        </div>
-        
-        <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} India Housing Projects Limited. All rights reserved.</p>
-          <div className={styles.social}>
-            <a href="#" className={styles.socialIcon}>Facebook</a>
-            <a href="#" className={styles.socialIcon}>Twitter</a>
-            <a href="#" className={styles.socialIcon}>Instagram</a>
-            <a href="#" className={styles.socialIcon}>LinkedIn</a>
           </div>
+        </FadeIn>
+      </div>
+
+      {/* Footer Main */}
+      <div className={styles.footerMain}>
+        <div className={`container ${styles.grid}`}>
+          
+          {/* Column 1: Logo & Follow Us */}
+          <div className={styles.col}>
+            <a href="/" className={styles.logo}>
+              <span className={styles.logoIcon}>&#10036;</span> IHPL
+            </a>
+            <p className={styles.tagline}>
+              Redefining luxury real estate experiences<br />with unparalleled elegance and service.
+            </p>
+            <h4 className={styles.followTitle}>Follow Us</h4>
+            <div className={styles.social}>
+              <a href="#"><Instagram size={18} /></a>
+              <a href="#"><Twitter size={18} /></a>
+              <a href="#"><Facebook size={18} /></a>
+              <a href="#"><Linkedin size={18} /></a>
+            </div>
+          </div>
+
+          {/* Column 2: Company */}
+          <div className={styles.col}>
+            <h4 className={styles.colTitle}>Company</h4>
+            <ul className={styles.links}>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About us</a></li>
+              <li><a href="#projects">VIP projects</a></li>
+              <li><a href="#packages">Packages</a></li>
+              <li><a href="#services">Add-ons services</a></li>
+              <li><a href="#why">Why us</a></li>
+              <li><a href="#contact">Contact us</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Help */}
+          <div className={styles.col}>
+            <h4 className={styles.colTitle}>Help</h4>
+            <ul className={styles.links}>
+              <li><a href="#support">Customer Support</a></li>
+              <li><a href="#terms">Terms & Conditions</a></li>
+              <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Contact */}
+          <div className={styles.col}>
+            <h4 className={styles.colTitle}>Contact</h4>
+            <ul className={styles.contactList}>
+              <li>
+                <MapPin size={18} className={styles.contactIcon} />
+                <span>IHPL Tower, Nariman Point,<br />Mumbai - 400021</span>
+              </li>
+              <li>
+                <Phone size={18} className={styles.contactIcon} />
+                <span>+91 22 1234 5678</span>
+              </li>
+              <li>
+                <Mail size={18} className={styles.contactIcon} />
+                <span>info@ihpl.in</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
+      </div>
+
+      <div className={styles.bottom}>
+        <p>Copyright &copy; {new Date().getFullYear()} India Housing Projects Limited all rights reserved.</p>
       </div>
     </footer>
   );
