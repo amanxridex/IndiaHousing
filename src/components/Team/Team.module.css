@@ -62,12 +62,13 @@
 }
 
 .teamCard {
-  background: white;
+  background: linear-gradient(135deg, rgba(41, 15, 76, 0.95) 0%, rgba(18, 5, 36, 0.98) 100%);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .teamCard:hover {
@@ -99,14 +100,16 @@
 .teamName {
   font-family: var(--font-playfair);
   font-size: 1.25rem;
-  color: var(--secondary);
+  color: #ffffff;
   margin-bottom: 0.25rem;
 }
 
 .teamRole {
-  color: var(--accent);
+  color: #C59D5F;
   font-size: 0.9rem;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 992px) {
