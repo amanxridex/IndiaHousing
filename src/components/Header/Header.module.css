@@ -9,7 +9,7 @@
 }
 
 .topBar {
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(90deg, #09203F, #03001C);
   padding: 0.5rem 0;
   font-size: 0.75rem;
   font-weight: 500;
@@ -42,7 +42,7 @@
 }
 
 .topLinks a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #C59D5F;
 }
 
 .socialIcons {
@@ -59,7 +59,7 @@
 }
 
 .socialIcons a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #C59D5F;
 }
 
 .emailContact {
