@@ -12,7 +12,7 @@ const teamMembers = [
     id: 2,
     name: 'Veer Vikram Singh',
     role: 'Chief Operations Officer',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop',
+    image: '/veer.jpeg',
   },
   {
     id: 3,
