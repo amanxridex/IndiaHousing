@@ -75,11 +75,11 @@ export default function ContactFooter() {
             <ul className={styles.contactList}>
               <li>
                 <MapPin size={18} className={styles.contactIcon} />
-                <span>Vijay Colony, near Centrio Mall,<br />Dehradun</span>
+                <span>Shakti colony, near Centrio Mall,<br />Dehradun</span>
               </li>
               <li>
                 <Phone size={18} className={styles.contactIcon} />
-                <span>+91 22 1234 5678</span>
+                <span>+91-1353144161</span>
               </li>
               <li>
                 <Mail size={18} className={styles.contactIcon} />

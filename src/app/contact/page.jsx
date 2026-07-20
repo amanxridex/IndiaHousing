@@ -54,7 +54,7 @@ export default function ContactPage() {
                 Whether you're looking for your dream property, a smart investment, or have questions about our projects, our team is here to assist you every step of the way.
               </p>
               <div className={styles.heroButtons}>
-                <a href="tel:+919876543210" className={styles.btnPrimary}>
+                <a href="tel:+911353144161" className={styles.btnPrimary}>
                   <PhoneCall size={20} /> Call Us
                 </a>
                 <a href="#book-visit" className={styles.btnOutline}>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 <PhoneCall size={36} className={styles.quickIcon} />
                 <h3>Call Us</h3>
                 <p>Speak directly with our property consultants.</p>
-                <a href="tel:+919876543210" className={styles.quickLink}>+91 98765 43210</a>
+                <a href="tel:+911353144161" className={styles.quickLink}>+91-1353144161</a>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.2}>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 <MessageCircle size={36} className={styles.quickIcon} />
                 <h3>WhatsApp</h3>
                 <p>Chat instantly with our sales team.</p>
-                <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className={styles.quickLink}>Start Conversation</a>
+                <a href="https://wa.me/911353144161" target="_blank" rel="noreferrer" className={styles.quickLink}>Start Conversation</a>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.3}>
@@ -226,8 +226,8 @@ export default function ContactPage() {
               <FadeIn direction="up" delay={0.1}>
                 <div className={styles.officeCard}>
                   <h3>Corporate Office</h3>
-                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Unit 401, Cyber Hub, Phase 2, Gurugram, Haryana 122002</span></div>
-                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91 124 456 7890</span></div>
+                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Shakti colony, near Centrio Mall, Dehradun</span></div>
+                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91-1353144161</span></div>
                   <div className={styles.officeDetail}><Mail className={styles.officeIcon} size={20}/> <span>corporate@indiahousing.org</span></div>
                   <a href="#" className={styles.mapBtn}>Get Directions <ArrowRight size={16}/></a>
                 </div>
@@ -235,8 +235,8 @@ export default function ContactPage() {
               <FadeIn direction="up" delay={0.2}>
                 <div className={styles.officeCard}>
                   <h3>Sales Office - Noida</h3>
-                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Sector 62, Electronic City, Noida, UP 201309</span></div>
-                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91 120 456 7890</span></div>
+                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Shakti colony, near Centrio Mall, Dehradun</span></div>
+                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91-1353144161</span></div>
                   <div className={styles.officeDetail}><Mail className={styles.officeIcon} size={20}/> <span>noida.sales@indiahousing.org</span></div>
                   <a href="#" className={styles.mapBtn}>Get Directions <ArrowRight size={16}/></a>
                 </div>
@@ -244,8 +244,8 @@ export default function ContactPage() {
               <FadeIn direction="up" delay={0.3}>
                 <div className={styles.officeCard}>
                   <h3>Regional Office - Lucknow</h3>
-                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Gomti Nagar Extension, Lucknow, UP 226010</span></div>
-                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91 522 456 7890</span></div>
+                  <div className={styles.officeDetail}><MapPin className={styles.officeIcon} size={20}/> <span>Shakti colony, near Centrio Mall, Dehradun</span></div>
+                  <div className={styles.officeDetail}><PhoneCall className={styles.officeIcon} size={20}/> <span>+91-1353144161</span></div>
                   <div className={styles.officeDetail}><Mail className={styles.officeIcon} size={20}/> <span>lucknow@indiahousing.org</span></div>
                   <a href="#" className={styles.mapBtn}>Get Directions <ArrowRight size={16}/></a>
                 </div>
@@ -343,7 +343,7 @@ export default function ContactPage() {
               </p>
               <div className={styles.heroButtons} style={{ marginTop: '40px' }}>
                 <a href="#book-visit" className={styles.btnPrimary}>Book Site Visit</a>
-                <a href="tel:+919876543210" className={styles.btnOutline}>Speak To An Expert</a>
+                <a href="tel:+911353144161" className={styles.btnOutline}>Speak To An Expert</a>
               </div>
             </div>
           </FadeIn>
@@ -351,8 +351,8 @@ export default function ContactPage() {
 
         {/* Floating Actions */}
         <div className={styles.floatingNav}>
-          <a href="tel:+919876543210" className={styles.floatBtn} title="Call Us"><PhoneCall size={24} /></a>
-          <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className={styles.floatBtn} title="WhatsApp"><MessageCircle size={24} /></a>
+          <a href="tel:+911353144161" className={styles.floatBtn} title="Call Us"><PhoneCall size={24} /></a>
+          <a href="https://wa.me/911353144161" target="_blank" rel="noreferrer" className={styles.floatBtn} title="WhatsApp"><MessageCircle size={24} /></a>
           <a href="#book-visit" className={styles.floatBtn} title="Book Visit"><Calendar size={24} /></a>
           <button onClick={scrollToTop} className={styles.floatBtn} title="Scroll to Top"><ArrowUp size={24} /></button>
         </div>

@@ -21,11 +21,11 @@ export default function FloatingCTA({ onOpenEnquiry }) {
           <Calendar size={18} />
           <span>Site Visit</span>
         </button>
-        <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className={styles.actionItem}>
+        <a href="https://wa.me/+911353144161" target="_blank" rel="noreferrer" className={styles.actionItem}>
           <MessageCircle size={18} />
           <span>WhatsApp</span>
         </a>
-        <a href="tel:1234567890" className={styles.actionItem}>
+        <a href="tel:+911353144161" className={styles.actionItem}>
           <Phone size={18} />
           <span>Call Us</span>
         </a>
