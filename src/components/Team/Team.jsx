@@ -38,7 +38,7 @@ export default function Team() {
           <div className={styles.founderCard}>
             <div className={styles.founderImageContainer}>
               <img 
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" 
+                src="/lakshaysahai.png" 
                 alt="Founder & Chairman" 
                 className={styles.founderImage} 
               />
