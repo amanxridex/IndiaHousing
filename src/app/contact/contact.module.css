@@ -1,0 +1,542 @@
+.pageContainer {
+  background-color: #FAFAFA;
+  color: #111;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 1. Hero Section */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 160px 20px 180px;
+  background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.9) 100%);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: var(--color-gold, #D4AF37);
+  color: #000;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnPrimary:hover {
+  background: #fff;
+}
+
+.btnOutline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnOutline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+}
+
+/* Common Sections */
+.section {
+  padding: 100px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTag {
+  color: var(--color-gold, #D4AF37);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+/* 2. Quick Contact Cards */
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: -100px;
+  position: relative;
+  z-index: 10;
+}
+
+.quickCard {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.quickCard:hover {
+  transform: translateY(-5px);
+  background: #fff;
+}
+
+.quickIcon {
+  color: var(--color-gold, #D4AF37);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.quickCard h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.quickCard p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.quickLink {
+  color: #111;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/* 3. Forms Container */
+.formsWrapper {
+  background: #fff;
+}
+
+.formSplit {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+}
+
+.formLeft h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.formLeft p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.formBox {
+  background: #fff;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup.full {
+  grid-column: 1 / -1;
+}
+
+.inputGroup label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.inputGroup input, 
+.inputGroup select, 
+.inputGroup textarea {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.inputGroup textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.inputGroup input:focus, 
+.inputGroup select:focus, 
+.inputGroup textarea:focus {
+  border-color: var(--color-gold, #D4AF37);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 20px;
+  font-size: 1.1rem;
+  background: #03001C;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submitBtn:hover {
+  background: var(--color-gold, #D4AF37);
+  color: #000;
+}
+
+/* 4. Office Locations & Departments */
+.grayBg {
+  background: #f5f5f7;
+}
+
+.officeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.officeCard {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+}
+
+.officeCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.officeDetail {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.officeIcon {
+  color: var(--color-gold, #D4AF37);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold, #D4AF37);
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+/* Departments */
+.deptGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.deptCard {
+  background: #03001C;
+  color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.deptCard:hover {
+  transform: translateY(-5px);
+  background: var(--color-gold, #D4AF37);
+  color: #000;
+}
+
+.deptCard h4 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.deptCard a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* 5. Map Section */
+.mapSection {
+  padding: 0;
+  position: relative;
+  height: 600px;
+  background: #ddd;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.mapOverlay {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  padding: 24px 40px;
+  border-radius: 100px;
+  display: flex;
+  gap: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+.mapFeature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 7. Business Hours & FAQ */
+.hoursFaqGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+}
+
+.hoursCard {
+  background: #03001C;
+  color: #fff;
+  padding: 50px;
+  border-radius: 24px;
+  text-align: center;
+}
+
+.hoursCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  color: var(--color-gold, #D4AF37);
+}
+
+.hourRow {
+  margin-bottom: 30px;
+}
+
+.hourDay {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hourTime {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.faqItem {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  padding: 24px;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  color: #111;
+}
+
+.faqIcon {
+  color: var(--color-gold, #D4AF37);
+  transition: transform 0.3s;
+}
+
+.faqIcon.rotated {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 24px 24px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Floating Actions */
+.floatingNav {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 100;
+}
+
+.floatBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+
+.floatBtn:hover {
+  background: var(--color-gold, #D4AF37);
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Final CTA */
+.finalCta {
+  background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop') center/cover fixed;
+  padding: 140px 20px;
+  text-align: center;
+  position: relative;
+  color: #fff;
+}
+
+.finalCta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(17,17,17,0.85);
+}
+
+.finalCtaContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .quickGrid { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+  .formSplit { grid-template-columns: 1fr; }
+  .officeGrid { grid-template-columns: 1fr; }
+  .hoursFaqGrid { grid-template-columns: 1fr; }
+  .mapOverlay { display: none; }
+}
+
+@media (max-width: 768px) {
+  .quickGrid { grid-template-columns: 1fr; }
+  .formGrid { grid-template-columns: 1fr; }
+}

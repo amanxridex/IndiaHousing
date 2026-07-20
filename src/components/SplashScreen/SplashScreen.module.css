@@ -33,7 +33,7 @@
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
-  font-family: var(--font-outfit);
+  font-family: var(--font-opensans);
   font-size: 0.9rem;
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;

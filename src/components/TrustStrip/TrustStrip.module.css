@@ -1,0 +1,38 @@
+.stripWrapper {
+  background: var(--color-black, #0D0D0D);
+  padding: 24px 0;
+  margin: 40px 0;
+}
+
+.stripInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.icon {
+  color: var(--color-gold, #D4AF37);
+}
+
+@media (max-width: 768px) {
+  .stripInner {
+    justify-content: center;
+  }
+  .item {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,17 +1,11 @@
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import SplashScreen from "@/components/SplashScreen/SplashScreen";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const openSans = Open_Sans({
+  variable: "--font-opensans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -21,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${openSans.variable}`}>
       <body>
         <SplashScreen />
         {children}

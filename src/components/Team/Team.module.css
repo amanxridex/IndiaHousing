@@ -33,7 +33,7 @@
 }
 
 .founderName {
-  font-family: var(--font-playfair);
+  font-family: var(--font-opensans);
   font-size: 2.5rem;
   color: #ffffff;
   margin-bottom: 0.5rem;
@@ -98,7 +98,7 @@
 }
 
 .teamName {
-  font-family: var(--font-playfair);
+  font-family: var(--font-opensans);
   font-size: 1.25rem;
   color: #ffffff;
   margin-bottom: 0.25rem;
