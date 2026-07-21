@@ -44,10 +44,10 @@ export default function Team() {
               />
             </div>
             <div className={styles.founderContent}>
-              <h3 className={styles.founderName}>Mr. Lakshay Sahay</h3>
+              <h3 className={styles.founderName}>Mr. Lakshay Sahai</h3>
               <div className={styles.founderRole}>Founder & Chairman</div>
               <p className={styles.founderBio}>
-                With over three decades of visionary leadership in the real estate sector, Mr. Lakshay Sahay established IHPL with a mission to transform the urban landscape of India. His uncompromising commitment to quality and sustainable development has been the cornerstone of our success, making IHPL a trusted name in luxury housing and commercial spaces.
+                With over three decades of visionary leadership in the real estate sector, Mr. Lakshay Sahai established IHPL with a mission to transform the urban landscape of India. His uncompromising commitment to quality and sustainable development has been the cornerstone of our success, making IHPL a trusted name in luxury housing and commercial spaces.
               </p>
             </div>
           </div>
