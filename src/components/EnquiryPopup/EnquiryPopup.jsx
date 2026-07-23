@@ -1,36 +1,114 @@
+"use client";
+import { useState } from 'react';
 import styles from './EnquiryPopup.module.css';
 import { X } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
 
-export default function EnquiryPopup({ isOpen, onClose, selectedProject = "" }) {
+export default function EnquiryPopup({ isOpen, onClose, selectedProject }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    city: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
   if (!isOpen) return null;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      const { error: insertError } = await supabase
+        .from('enquiries')
+        .insert([{
+          project_id: selectedProject?.id?.toString(),
+          project_name: selectedProject?.name || 'General Enquiry',
+          name: formData.name,
+          phone: formData.phone,
+          city: formData.city
+        }]);
+        
+      if (insertError) throw insertError;
+      
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        setFormData({ name: '', phone: '', city: '' });
+        onClose();
+      }, 2000);
+      
+    } catch (err) {
+      console.error('Error submitting enquiry:', err);
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.popup}>
-        <button className={styles.closeBtn} onClick={onClose}><X size={24} /></button>
+        <button className={styles.closeBtn} onClick={() => { onClose(); setSuccess(false); setError(null); }}><X size={24} /></button>
         <h2>Register Your Interest</h2>
-        <p>Fill out the form below and our experts will get in touch with you shortly.</p>
+        {selectedProject?.name ? (
+          <p>Enquiring about <strong>{selectedProject.name}</strong></p>
+        ) : (
+          <p>Fill out the form below and our experts will get in touch with you shortly.</p>
+        )}
         
-        <form className={styles.form} onSubmit={(e) => { e.preventDefault(); alert('Enquiry Submitted!'); onClose(); }}>
-          <input type="text" placeholder="Full Name *" required className={styles.input} />
-          <div className={styles.row}>
-            <input type="tel" placeholder="Phone Number *" required className={styles.input} />
-            <input type="email" placeholder="Email Address" className={styles.input} />
+        {success ? (
+          <div style={{ textAlign: 'center', padding: '2rem 0', color: '#10b981' }}>
+            <h3>Thank You!</h3>
+            <p>Your enquiry has been submitted successfully.</p>
           </div>
-          <select className={styles.input} defaultValue={selectedProject}>
-            <option value="" disabled>Select Project</option>
-            <option value="the-crown-residences">The Crown Residences</option>
-            <option value="ihpl-tech-park">IHPL Tech Park</option>
-            <option value="serenity-villas">Serenity Villas</option>
-            <option value="majesty-towers">Majesty Towers</option>
-            <option value="the-oasis-gurgaon">The Oasis</option>
-            <option value="platinum-estates">Platinum Estates</option>
-          </select>
-          <input type="date" className={styles.input} placeholder="Preferred Visit Date" />
-          <textarea placeholder="Message (Optional)" rows={4} className={styles.textarea}></textarea>
-          
-          <button type="submit" className={styles.submitBtn}>Submit Request</button>
-        </form>
+        ) : (
+          <form className={styles.form} onSubmit={handleSubmit}>
+            {error && <div style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</div>}
+            
+            <input 
+              type="text" 
+              name="name"
+              placeholder="Full Name *" 
+              required 
+              className={styles.input} 
+              value={formData.name}
+              onChange={handleChange}
+            />
+            
+            <input 
+              type="tel" 
+              name="phone"
+              placeholder="Phone Number *" 
+              required 
+              className={styles.input} 
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            
+            <input 
+              type="text" 
+              name="city"
+              placeholder="City *" 
+              required
+              className={styles.input} 
+              value={formData.city}
+              onChange={handleChange}
+            />
+            
+            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Submit Request'}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

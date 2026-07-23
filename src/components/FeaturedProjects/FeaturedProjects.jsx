@@ -3,10 +3,15 @@ import { useState, useEffect } from 'react';
 import styles from './FeaturedProjects.module.css';
 import FadeIn from '../FadeIn';
 import { supabase } from '@/lib/supabaseClient';
+import EnquiryPopup from '../EnquiryPopup/EnquiryPopup';
+import { useRouter } from 'next/navigation';
 
 export default function FeaturedProjects() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchProjects();
@@ -38,6 +43,15 @@ export default function FeaturedProjects() {
     }
   };
 
+  const handleEnquire = (project) => {
+    setSelectedProject(project);
+    setIsEnquiryOpen(true);
+  };
+
+  const handleViewDetails = (id) => {
+    router.push(`/projects/${id}`);
+  };
+
   return (
     <section id="projects" className={`section ${styles.projects}`}>
       <div className="container">
@@ -67,8 +81,8 @@ export default function FeaturedProjects() {
                       <strong>{project.name}</strong>{project.subtitle ? `, ${project.subtitle}` : ''}
                     </h3>
                     <div className={styles.cardActions}>
-                      <button className={styles.actionBtn}>Enquire Now</button>
-                      <button className={styles.actionBtn}>View Details</button>
+                      <button className={styles.actionBtn} onClick={() => handleEnquire(project)}>Enquire Now</button>
+                      <button className={styles.actionBtn} onClick={() => handleViewDetails(project.id)}>View Details</button>
                     </div>
                   </div>
                 </div>
@@ -95,6 +109,12 @@ export default function FeaturedProjects() {
           </div>
         )}
       </div>
+      
+      <EnquiryPopup 
+        isOpen={isEnquiryOpen} 
+        onClose={() => setIsEnquiryOpen(false)} 
+        selectedProject={selectedProject} 
+      />
     </section>
   );
 }
