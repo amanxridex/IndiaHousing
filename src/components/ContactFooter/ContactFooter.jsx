@@ -31,7 +31,7 @@ export default function ContactFooter() {
           {/* Column 1: Logo & Follow Us */}
           <div className={styles.col}>
             <a href="/" className={styles.logo} style={{ borderBottom: 'none', paddingBottom: '1rem' }}>
-              <img src="/ihpl.png" alt="IHPL Logo" style={{ height: '100px', objectFit: 'contain' }} />
+              <img src="/ihplnewlogo.png" alt="IHPL Logo" style={{ height: '100px', objectFit: 'contain' }} />
             </a>
             <p className={styles.tagline}>
               Redefining luxury real estate experiences<br />with unparalleled elegance and service.
