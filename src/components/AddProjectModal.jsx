@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import styles from './AddProjectModal.module.css';
 
@@ -6,7 +6,6 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
   const [formData, setFormData] = useState({
     name: '',
     subtitle: '',
-    image: '',
     price: '',
     address: '',
     contact: '',
@@ -15,8 +14,12 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     location: '',
     manager: '',
   });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isDragActive, setIsDragActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const fileInputRef = useRef(null);
 
   if (!isOpen) return null;
 
@@ -25,37 +28,97 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragActive(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleFileSelect = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFile(e.target.files[0]);
+    }
+  };
+
+  const handleFile = (file) => {
+    if (file.type.match(/^image\/(jpeg|png|jpg)$/)) {
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+      setError(null);
+    } else {
+      setError('Please select a valid image file (.jpg, .jpeg, .png)');
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      subtitle: '',
+      price: '',
+      address: '',
+      contact: '',
+      status: 'Active',
+      type: 'Residential',
+      location: '',
+      manager: '',
+    });
+    setSelectedFile(null);
+    setPreviewUrl(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedFile) {
+      setError('Please select an image for the project.');
+      return;
+    }
+    
     setIsSubmitting(true);
     setError(null);
 
     try {
+      // 1. Upload image to Supabase Storage
+      const fileExt = selectedFile.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `public/${fileName}`;
+      
+      const { error: uploadError, data: uploadData } = await supabase.storage
+        .from('project-images')
+        .upload(filePath, selectedFile);
+
+      if (uploadError) throw uploadError;
+
+      // 2. Get Public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('project-images')
+        .getPublicUrl(filePath);
+
+      // 3. Insert project record
       const { data, error } = await supabase
         .from('projects')
-        .insert([formData])
+        .insert([{ ...formData, image: publicUrl }])
         .select();
 
       if (error) throw error;
       
       onProjectAdded(data[0]);
       onClose();
-      // Reset form
-      setFormData({
-        name: '',
-        subtitle: '',
-        image: '',
-        price: '',
-        address: '',
-        contact: '',
-        status: 'Active',
-        type: 'Residential',
-        location: '',
-        manager: '',
-      });
+      resetForm();
     } catch (err) {
       console.error('Error adding project:', err.message);
-      setError('Failed to add project. Ensure table exists and schema is correct.');
+      setError(`Failed to add project: ${err.message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -66,12 +129,38 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <h2>Add New Project</h2>
-          <button onClick={onClose} className={styles.closeButton}>&times;</button>
+          <button onClick={() => { onClose(); resetForm(); }} className={styles.closeButton}>&times;</button>
         </div>
         
         {error && <div className={styles.error}>{error}</div>}
 
         <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label>Project Image (Drag & Drop)</label>
+            <div 
+              className={`${styles.fileUploadZone} ${isDragActive ? styles.dragActive : ''}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current.click()}
+            >
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileSelect} 
+                accept=".jpg, .jpeg, .png" 
+              />
+              <p>Drag and drop your image here, or click to select</p>
+              <p style={{ fontSize: '0.8rem', marginTop: '4px' }}>Accepts .jpg, .jpeg, .png</p>
+            </div>
+            {previewUrl && (
+              <div className={styles.filePreview}>
+                <img src={previewUrl} alt="Preview" />
+                <span>{selectedFile.name}</span>
+              </div>
+            )}
+          </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="name">Project Name</label>
             <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} placeholder="e.g. The Crown Residences" />
@@ -80,11 +169,6 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
           <div className={styles.formGroup}>
             <label htmlFor="subtitle">Subtitle / Short Desc</label>
             <input type="text" id="subtitle" name="subtitle" required value={formData.subtitle} onChange={handleChange} placeholder="e.g. Bandra West, Mumbai (4 & 5 BHK)" />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="image">Image URL</label>
-            <input type="url" id="image" name="image" required value={formData.image} onChange={handleChange} placeholder="https://..." />
           </div>
           
           <div className={styles.formGroup}>
