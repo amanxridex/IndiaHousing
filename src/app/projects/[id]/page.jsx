@@ -71,21 +71,19 @@ export default function ProjectDetails({ params }) {
     <main className={styles.pageWrapper}>
       <Header />
       
-      <div className={styles.container}>
+      <div className={styles.heroImage}>
+        <img src={project.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />
+        <div className={styles.heroOverlay}></div>
+        
         <button onClick={() => router.back()} className={styles.backButton}>
           <ArrowLeft size={20} /> Back to Projects
         </button>
 
-        <div className={styles.heroImage}>
-          <img src={project.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />
-          <div className={styles.heroOverlay}></div>
-        </div>
-
-        <div className={styles.header}>
+        <div className={styles.heroContent}>
           <div className={styles.titleSection}>
+            <span className={styles.badge}>{project.status || 'Active'}</span>
             <h1>{project.name}</h1>
             <p className={styles.subtitle}>{project.subtitle}</p>
-            <span className={styles.badge}>{project.status || 'Active'}</span>
           </div>
           <div className={styles.actionSection}>
             <p className={styles.price}>{project.price || 'Price on Request'}</p>
@@ -94,7 +92,9 @@ export default function ProjectDetails({ params }) {
             </button>
           </div>
         </div>
+      </div>
 
+      <div className={styles.container}>
         <div className={styles.detailsGrid}>
           <div className={styles.detailCard}>
             <span className={styles.detailLabel}>Property Type</span>
