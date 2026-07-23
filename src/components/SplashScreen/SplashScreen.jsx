@@ -34,7 +34,7 @@ export default function SplashScreen() {
         onEnded={handleComplete}
         className={styles.video}
       >
-        <source src="/splashscreen.mp4" type="video/mp4" />
+        <source src="/splashscreen2.mp4" type="video/mp4" />
       </video>
       <button className={styles.skipButton} onClick={handleComplete}>
         Skip

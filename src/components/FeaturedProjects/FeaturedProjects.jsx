@@ -99,8 +99,8 @@ export default function FeaturedProjects() {
                       <strong>{project.name}</strong>{project.subtitle ? `, ${project.subtitle}` : ''}
                     </h3>
                     <div className={styles.cardActions}>
-                      <button className={styles.actionBtn}>Enquire Now</button>
-                      <button className={styles.actionBtn}>View Details</button>
+                      <button className={styles.actionBtn} onClick={() => handleEnquire(project)}>Enquire Now</button>
+                      <button className={styles.actionBtn} onClick={() => handleViewDetails(project.id)}>View Details</button>
                     </div>
                   </div>
                 </div>
