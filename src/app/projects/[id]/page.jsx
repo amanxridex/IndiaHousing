@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './project-details.module.css';
 import { useRouter } from 'next/navigation';
@@ -7,12 +7,14 @@ import { ArrowLeft } from 'lucide-react';
 import EnquiryPopup from '@/components/EnquiryPopup/EnquiryPopup';
 
 export default function ProjectDetails({ params }) {
+  const unwrappedParams = React.use(params);
+  const id = unwrappedParams.id;
+  
   const [project, setProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const router = useRouter();
-  const { id } = params;
 
   useEffect(() => {
     async function fetchProject() {
