@@ -277,7 +277,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
                     <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept=".jpg, .jpeg, .png" />
                     <p>Drag and drop your image here, or click to select</p>
                   </div>
-                  {previewUrl && <div className={styles.filePreview}><img src={previewUrl} alt="Preview" /><span>{selectedFile.name}</span></div>}
+                  {previewUrl && <div className={styles.filePreview}><img src={previewUrl} alt="Preview" /><span>{selectedFile ? selectedFile.name : 'Current Image'}</span></div>}
                 </div>
                 <div className={styles.formGroup}><label>Master Plan Image URL</label><input type="text" name="master_plan_image" value={formData.master_plan_image} onChange={handleChange} placeholder="https://..." /></div>
                 <div className={styles.formGroup}><label>Image Gallery (Comma-separated URLs)</label><textarea name="gallery" value={formData.gallery} onChange={handleChange} rows={3}></textarea></div>
