@@ -1,10 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import styles from './AddProjectModal.module.css';
 
 const TABS = ['Basic Info', 'Details', 'Media', 'Highlights & Features', 'Extra Info'];
 
-export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
+export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initialData = null }) {
   const [activeTab, setActiveTab] = useState('Basic Info');
   
   const initialFormState = {
@@ -25,6 +25,33 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (initialData && isOpen) {
+      // populate form with initialData, converting arrays back to comma-separated strings for the textareas
+      const joinIfArray = (val) => Array.isArray(val) ? val.join(', ') : (val || '');
+      const stringifyIfObj = (val) => val && typeof val === 'object' && Object.keys(val).length ? JSON.stringify(val) : '';
+      
+      setFormData({
+        ...initialData,
+        highlights: joinIfArray(initialData.highlights),
+        gallery: joinIfArray(initialData.gallery),
+        unit_layouts: joinIfArray(initialData.unit_layouts),
+        amenities: joinIfArray(initialData.amenities),
+        specifications: joinIfArray(initialData.specifications),
+        payment_plans: joinIfArray(initialData.payment_plans),
+        floor_plans: stringifyIfObj(initialData.floor_plans),
+        downloads: stringifyIfObj(initialData.downloads),
+        faqs: stringifyIfObj(initialData.faqs),
+        testimonials: stringifyIfObj(initialData.testimonials),
+      });
+      if (initialData.image) {
+        setPreviewUrl(initialData.image);
+      }
+    } else if (!isOpen) {
+      resetForm();
+    }
+  }, [initialData, isOpen]);
 
   if (!isOpen) return null;
 
@@ -81,7 +108,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedFile) {
+    if (!selectedFile && !initialData?.image) {
       setError('Please select a Hero image for the project in the Media tab.');
       return;
     }
@@ -90,19 +117,25 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     setError(null);
 
     try {
-      const fileExt = selectedFile.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `public/${fileName}`;
-      
-      const { error: uploadError } = await supabase.storage
-        .from('project-images')
-        .upload(filePath, selectedFile);
+      let publicUrl = formData.image;
 
-      if (uploadError) throw uploadError;
+      if (selectedFile) {
+        const fileExt = selectedFile.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `public/${fileName}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('project-images')
+          .upload(filePath, selectedFile);
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('project-images')
-        .getPublicUrl(filePath);
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from('project-images')
+          .getPublicUrl(filePath);
+        
+        publicUrl = urlData.publicUrl;
+      }
 
       const payload = {
         name: formData.name || 'NA',
@@ -134,14 +167,25 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
         testimonials: parseJSONField(formData.testimonials, []),
       };
 
-      const { data, error } = await supabase
-        .from('projects')
-        .insert([payload])
-        .select();
+      if (initialData && initialData.id) {
+        const { data, error } = await supabase
+          .from('projects')
+          .update(payload)
+          .eq('id', initialData.id)
+          .select();
 
-      if (error) throw error;
+        if (error) throw error;
+        onProjectAdded(data[0], true); // true indicates update
+      } else {
+        const { data, error } = await supabase
+          .from('projects')
+          .insert([payload])
+          .select();
+
+        if (error) throw error;
+        onProjectAdded(data[0], false);
+      }
       
-      onProjectAdded(data[0]);
       onClose();
       resetForm();
     } catch (err) {
@@ -156,7 +200,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent} style={{ maxWidth: '800px', maxHeight: '90vh', overflowY: 'auto' }}>
         <div className={styles.modalHeader}>
-          <h2>Add Premium Project</h2>
+          <h2>{initialData ? 'Edit Premium Project' : 'Add Premium Project'}</h2>
           <button onClick={() => { onClose(); resetForm(); }} className={styles.closeButton}>&times;</button>
         </div>
         
@@ -267,7 +311,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
           <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontSize: '0.8rem', color: '#888', alignSelf: 'center' }}>Empty fields will default to "NA"</span>
             <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
-              {isSubmitting ? 'Adding...' : 'Add Project'}
+              {isSubmitting ? 'Saving...' : (initialData ? 'Save Changes' : 'Add Project')}
             </button>
           </div>
         </form>

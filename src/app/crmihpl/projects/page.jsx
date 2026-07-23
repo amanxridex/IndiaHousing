@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect } from 'react';
 import styles from '../crm.module.css';
-import { Plus } from 'lucide-react';
+import { Plus, Edit2 } from 'lucide-react';
 import AddProjectModal from '@/components/AddProjectModal';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function ProjectsWorkspace() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProject, setEditingProject] = useState(null);
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,8 +41,22 @@ export default function ProjectsWorkspace() {
     }
   };
 
-  const handleProjectAdded = (newProject) => {
-    setProjects(prev => [newProject, ...prev]);
+  const handleProjectAdded = (newProject, isUpdate) => {
+    if (isUpdate) {
+      setProjects(prev => prev.map(p => p.id === newProject.id ? newProject : p));
+    } else {
+      setProjects(prev => [newProject, ...prev]);
+    }
+  };
+
+  const handleEditClick = (project) => {
+    setEditingProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setEditingProject(null);
   };
 
   return (
@@ -52,7 +67,7 @@ export default function ProjectsWorkspace() {
           <p style={{ color: '#64748b' }}>Manage inventory and internal property analytics.</p>
         </div>
         <button 
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => { setEditingProject(null); setIsModalOpen(true); }}
           style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
           <Plus size={18}/> Add Project
         </button>
@@ -66,8 +81,9 @@ export default function ProjectsWorkspace() {
               <th>Type</th>
               <th>Location</th>
               <th>Manager</th>
-              <th>Revenue</th>
+              <th>Pricing</th>
               <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +108,15 @@ export default function ProjectsWorkspace() {
                       {project.status}
                     </span>
                   </td>
+                  <td>
+                    <button 
+                      onClick={() => handleEditClick(project)}
+                      style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer', padding: '4px' }}
+                      title="Edit Project"
+                    >
+                      <Edit2 size={18} />
+                    </button>
+                  </td>
                 </tr>
               ))
             )}
@@ -101,8 +126,9 @@ export default function ProjectsWorkspace() {
 
       <AddProjectModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={handleModalClose} 
         onProjectAdded={handleProjectAdded} 
+        initialData={editingProject}
       />
     </main>
   );
