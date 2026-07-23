@@ -54,9 +54,9 @@ export default function FeaturedProjects() {
         {isLoading ? (
           <div style={{ textAlign: 'center', padding: '50px' }}>Loading projects...</div>
         ) : (
-          <div className={styles.marqueeContainer}>
-            <div className={styles.marqueeTrack}>
-              {/* First Set */}
+          <div className={projects.length >= 4 ? styles.marqueeContainer : styles.simpleContainer}>
+            <div className={projects.length >= 4 ? styles.marqueeTrack : styles.simpleTrack}>
+              {/* First Set (Always render) */}
               {projects.map((project) => (
                 <div key={`set1-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
@@ -64,7 +64,7 @@ export default function FeaturedProjects() {
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
-                      <strong>{project.name}</strong>, {project.subtitle}
+                      <strong>{project.name}</strong>{project.subtitle ? `, ${project.subtitle}` : ''}
                     </h3>
                     <div className={styles.cardActions}>
                       <button className={styles.actionBtn}>Enquire Now</button>
@@ -73,15 +73,16 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
               ))}
-              {/* Second Set (Duplicate for seamless loop) */}
-              {projects.map((project) => (
+              
+              {/* Second Set (Duplicate for seamless loop only if enough items) */}
+              {projects.length >= 4 && projects.map((project) => (
                 <div key={`set2-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
                     <img src={project.image} alt={project.name} className={styles.image} />
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
-                      <strong>{project.name}</strong>, {project.subtitle}
+                      <strong>{project.name}</strong>{project.subtitle ? `, ${project.subtitle}` : ''}
                     </h3>
                     <div className={styles.cardActions}>
                       <button className={styles.actionBtn}>Enquire Now</button>

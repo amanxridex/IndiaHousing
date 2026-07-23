@@ -17,11 +17,26 @@
   position: relative;
 }
 
+.simpleContainer {
+  width: 100%;
+  padding: 1rem 0 3rem;
+  position: relative;
+  overflow-x: auto;
+}
+
 .marqueeTrack {
   display: flex;
   gap: 2rem;
   width: max-content;
   animation: scroll 40s linear infinite;
+}
+
+.simpleTrack {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .marqueeTrack:hover {
