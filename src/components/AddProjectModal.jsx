@@ -53,7 +53,6 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
     }
   }, [initialData, isOpen]);
 
-  if (!isOpen) return null;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -195,6 +194,8 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
       setIsSubmitting(false);
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className={styles.modalOverlay}>
