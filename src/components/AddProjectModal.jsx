@@ -74,12 +74,12 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
   };
 
   const handleFile = (file) => {
-    if (file.type.match(/^image\/(jpeg|png|jpg)$/)) {
+    if (file.type.match(/^(image|video)\//)) {
       setSelectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
       setError(null);
     } else {
-      setError('Please select a valid image file (.jpg, .jpeg, .png)');
+      setError('Please select a valid image or video file (.jpg, .png, .mp4, .webm)');
     }
   };
 
@@ -108,7 +108,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedFile && !initialData?.image) {
-      setError('Please select a Hero image for the project in the Media tab.');
+      setError('Please select a Hero image or video for the project in the Media tab.');
       return;
     }
     
@@ -268,16 +268,25 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
             {activeTab === 'Media' && (
               <>
                 <div className={styles.formGroup}>
-                  <label>Hero Image (Drag & Drop)</label>
+                  <label>Hero Media (Drag & Drop Image or Video)</label>
                   <div 
                     className={`${styles.fileUploadZone} ${isDragActive ? styles.dragActive : ''}`}
                     onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
                     onClick={() => fileInputRef.current.click()}
                   >
-                    <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept=".jpg, .jpeg, .png" />
-                    <p>Drag and drop your image here, or click to select</p>
+                    <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept=".jpg, .jpeg, .png, .mp4, .webm" />
+                    <p>Drag and drop your image/video here, or click to select</p>
                   </div>
-                  {previewUrl && <div className={styles.filePreview}><img src={previewUrl} alt="Preview" /><span>{selectedFile ? selectedFile.name : 'Current Image'}</span></div>}
+                  {previewUrl && (
+                    <div className={styles.filePreview}>
+                      {previewUrl.match(/\.(mp4|webm)$/i) || (selectedFile && selectedFile.type.startsWith('video/')) ? (
+                        <video src={previewUrl} autoPlay muted loop style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                      ) : (
+                        <img src={previewUrl} alt="Preview" />
+                      )}
+                      <span>{selectedFile ? selectedFile.name : 'Current Media'}</span>
+                    </div>
+                  )}
                 </div>
                 <div className={styles.formGroup}><label>Master Plan Image URL</label><input type="text" name="master_plan_image" value={formData.master_plan_image} onChange={handleChange} placeholder="https://..." /></div>
                 <div className={styles.formGroup}><label>Image Gallery (Comma-separated URLs)</label><textarea name="gallery" value={formData.gallery} onChange={handleChange} rows={3}></textarea></div>

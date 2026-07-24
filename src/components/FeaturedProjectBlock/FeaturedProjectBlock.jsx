@@ -6,7 +6,11 @@ export default function FeaturedProjectBlock({ project }) {
 
   return (
     <div className={styles.featuredContainer}>
-      <img src={project.image} alt={project.name} className={styles.bgImage} />
+      {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
+        <video src={project.image} autoPlay muted loop playsInline className={styles.bgImage} />
+      ) : (
+        <img src={project.image} alt={project.name} className={styles.bgImage} />
+      )}
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <span className={styles.tag}>Project of the Month</span>

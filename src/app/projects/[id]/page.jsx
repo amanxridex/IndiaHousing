@@ -74,7 +74,11 @@ export default function ProjectDetails({ params }) {
       
       {/* 1. HERO SECTION */}
       <div className={styles.heroImage}>
-        <img src={project.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />
+        {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
+          <video src={project.image} autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : (
+          <img src={project.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />
+        )}
         <div className={styles.heroOverlay}></div>
         
         <button onClick={() => router.back()} className={styles.backButton}>

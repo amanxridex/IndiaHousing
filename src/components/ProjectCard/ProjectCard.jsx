@@ -7,7 +7,11 @@ export default function ProjectCard({ project, onCompare, isCompared }) {
     <div className={styles.card}>
       <div className={styles.imageContainer}>
         {project.isPremium && <span className={styles.badge}>Premium</span>}
-        <img src={project.image} alt={project.name} className={styles.image} />
+        {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
+          <video src={project.image} autoPlay muted loop className={styles.image} />
+        ) : (
+          <img src={project.image} alt={project.name} className={styles.image} />
+        )}
         
         {/* Hover Overlay */}
         <div className={styles.hoverOverlay}>

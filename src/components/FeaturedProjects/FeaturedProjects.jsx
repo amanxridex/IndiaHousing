@@ -74,7 +74,11 @@ export default function FeaturedProjects() {
               {projects.map((project) => (
                 <div key={`set1-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
-                    <img src={project.image} alt={project.name} className={styles.image} />
+                    {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
+                      <video src={project.image} autoPlay muted loop playsInline className={styles.image} />
+                    ) : (
+                      <img src={project.image} alt={project.name} className={styles.image} />
+                    )}
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
@@ -92,7 +96,11 @@ export default function FeaturedProjects() {
               {projects.length >= 4 && projects.map((project) => (
                 <div key={`set2-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
-                    <img src={project.image} alt={project.name} className={styles.image} />
+                    {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
+                      <video src={project.image} autoPlay muted loop playsInline className={styles.image} />
+                    ) : (
+                      <img src={project.image} alt={project.name} className={styles.image} />
+                    )}
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
