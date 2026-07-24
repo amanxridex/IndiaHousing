@@ -7,6 +7,7 @@ import { ArrowLeft, CheckCircle2, MapPin, Building, Calendar, FileText, Download
 import EnquiryPopup from '@/components/EnquiryPopup/EnquiryPopup';
 import Header from '@/components/Header/Header';
 import ContactFooter from '@/components/ContactFooter/ContactFooter';
+import { getMediaType } from '@/utils/media';
 
 export default function ProjectDetails({ params }) {
   const unwrappedParams = React.use(params);
@@ -74,11 +75,16 @@ export default function ProjectDetails({ params }) {
       
       {/* 1. HERO SECTION */}
       <div className={styles.heroImage}>
-        {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
-          <video src={project.image} autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        ) : (
-          <img src={project.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />
-        )}
+        {(() => {
+          const media = getMediaType(project.image);
+          if (media.type === 'youtube') {
+            return <iframe src={media.src} allow="autoplay; encrypted-media" style={{ width: '100%', height: '100%', border: 'none', pointerEvents: 'none' }} allowFullScreen />;
+          } else if (media.type === 'video') {
+            return <video src={media.src} autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />;
+          } else {
+            return <img src={media.src || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop'} alt={project.name} />;
+          }
+        })()}
         <div className={styles.heroOverlay}></div>
         
         <button onClick={() => router.back()} className={styles.backButton}>

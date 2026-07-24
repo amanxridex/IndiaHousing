@@ -1,17 +1,23 @@
 import styles from './ProjectCard.module.css';
 import Link from 'next/link';
 import { MapPin, Maximize, Calendar, FileText, CheckCircle2 } from 'lucide-react';
+import { getMediaType } from '../../utils/media';
 
 export default function ProjectCard({ project, onCompare, isCompared }) {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
         {project.isPremium && <span className={styles.badge}>Premium</span>}
-        {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
-          <video src={project.image} autoPlay muted loop className={styles.image} />
-        ) : (
-          <img src={project.image} alt={project.name} className={styles.image} />
-        )}
+        {(() => {
+          const media = getMediaType(project.image);
+          if (media.type === 'youtube') {
+            return <iframe src={media.src} allow="autoplay; encrypted-media" className={styles.image} allowFullScreen style={{ border: 'none', pointerEvents: 'none' }} />;
+          } else if (media.type === 'video') {
+            return <video src={media.src} autoPlay muted loop className={styles.image} />;
+          } else {
+            return <img src={media.src} alt={project.name} className={styles.image} />;
+          }
+        })()}
         
         {/* Hover Overlay */}
         <div className={styles.hoverOverlay}>

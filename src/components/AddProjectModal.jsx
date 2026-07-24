@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import styles from './AddProjectModal.module.css';
+import { getMediaType } from '../utils/media';
 
 const TABS = ['Basic Info', 'Details', 'Media', 'Highlights & Features', 'Extra Info'];
 
@@ -107,8 +108,8 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedFile && !initialData?.image) {
-      setError('Please select a Hero image or video for the project in the Media tab.');
+    if (!selectedFile && !initialData?.image && !formData.image) {
+      setError('Please select a Hero image/video or provide a URL in the Media tab.');
       return;
     }
     
@@ -268,7 +269,11 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
             {activeTab === 'Media' && (
               <>
                 <div className={styles.formGroup}>
-                  <label>Hero Media (Drag & Drop Image or Video)</label>
+                  <label>Hero Media URL (YouTube Link or Direct URL)</label>
+                  <input type="text" name="image" value={formData.image || ''} onChange={(e) => { handleChange(e); setPreviewUrl(e.target.value); setSelectedFile(null); }} placeholder="https://www.youtube.com/watch?v=..." />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Or Upload Hero Media (Drag & Drop Image or Video)</label>
                   <div 
                     className={`${styles.fileUploadZone} ${isDragActive ? styles.dragActive : ''}`}
                     onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
@@ -279,11 +284,16 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, initi
                   </div>
                   {previewUrl && (
                     <div className={styles.filePreview}>
-                      {previewUrl.match(/\.(mp4|webm)$/i) || (selectedFile && selectedFile.type.startsWith('video/')) ? (
-                        <video src={previewUrl} autoPlay muted loop style={{ maxWidth: '100%', maxHeight: '200px' }} />
-                      ) : (
-                        <img src={previewUrl} alt="Preview" />
-                      )}
+                      {(() => {
+                        const media = getMediaType(previewUrl);
+                        if (media.type === 'youtube') {
+                          return <iframe src={media.src} style={{ width: '100%', height: '200px', border: 'none' }} allow="autoplay; encrypted-media" allowFullScreen />;
+                        } else if (media.type === 'video' || (selectedFile && selectedFile.type.startsWith('video/'))) {
+                          return <video src={previewUrl} autoPlay muted loop style={{ maxWidth: '100%', maxHeight: '200px' }} />;
+                        } else {
+                          return <img src={previewUrl} alt="Preview" />;
+                        }
+                      })()}
                       <span>{selectedFile ? selectedFile.name : 'Current Media'}</span>
                     </div>
                   )}

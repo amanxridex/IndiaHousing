@@ -1,16 +1,22 @@
 import styles from './FeaturedProjectBlock.module.css';
 import Link from 'next/link';
+import { getMediaType } from '../../utils/media';
 
 export default function FeaturedProjectBlock({ project }) {
   if (!project) return null;
 
   return (
     <div className={styles.featuredContainer}>
-      {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
-        <video src={project.image} autoPlay muted loop playsInline className={styles.bgImage} />
-      ) : (
-        <img src={project.image} alt={project.name} className={styles.bgImage} />
-      )}
+      {(() => {
+        const media = getMediaType(project.image);
+        if (media.type === 'youtube') {
+          return <iframe src={media.src} allow="autoplay; encrypted-media" className={styles.bgImage} allowFullScreen style={{ border: 'none', pointerEvents: 'none' }} />;
+        } else if (media.type === 'video') {
+          return <video src={media.src} autoPlay muted loop playsInline className={styles.bgImage} />;
+        } else {
+          return <img src={media.src} alt={project.name} className={styles.bgImage} />;
+        }
+      })()}
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <span className={styles.tag}>Project of the Month</span>

@@ -5,6 +5,7 @@ import FadeIn from '../FadeIn';
 import { supabase } from '@/lib/supabaseClient';
 import EnquiryPopup from '../EnquiryPopup/EnquiryPopup';
 import { useRouter } from 'next/navigation';
+import { getMediaType } from '../../utils/media';
 
 export default function FeaturedProjects() {
   const [projects, setProjects] = useState([]);
@@ -74,11 +75,16 @@ export default function FeaturedProjects() {
               {projects.map((project) => (
                 <div key={`set1-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
-                    {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
-                      <video src={project.image} autoPlay muted loop playsInline className={styles.image} />
-                    ) : (
-                      <img src={project.image} alt={project.name} className={styles.image} />
-                    )}
+                    {(() => {
+                      const media = getMediaType(project.image);
+                      if (media.type === 'youtube') {
+                        return <iframe src={media.src} allow="autoplay; encrypted-media" className={styles.image} allowFullScreen style={{ border: 'none', pointerEvents: 'none' }} />;
+                      } else if (media.type === 'video') {
+                        return <video src={media.src} autoPlay muted loop playsInline className={styles.image} />;
+                      } else {
+                        return <img src={media.src} alt={project.name} className={styles.image} />;
+                      }
+                    })()}
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
@@ -96,11 +102,16 @@ export default function FeaturedProjects() {
               {projects.length >= 4 && projects.map((project) => (
                 <div key={`set2-${project.id}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
-                    {project.image?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) ? (
-                      <video src={project.image} autoPlay muted loop playsInline className={styles.image} />
-                    ) : (
-                      <img src={project.image} alt={project.name} className={styles.image} />
-                    )}
+                    {(() => {
+                      const media = getMediaType(project.image);
+                      if (media.type === 'youtube') {
+                        return <iframe src={media.src} allow="autoplay; encrypted-media" className={styles.image} allowFullScreen style={{ border: 'none', pointerEvents: 'none' }} />;
+                      } else if (media.type === 'video') {
+                        return <video src={media.src} autoPlay muted loop playsInline className={styles.image} />;
+                      } else {
+                        return <img src={media.src} alt={project.name} className={styles.image} />;
+                      }
+                    })()}
                   </div>
                   <div className={styles.content}>
                     <h3 className={styles.projectName}>
